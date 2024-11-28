@@ -1,0 +1,16 @@
+Problem Description:
+You need to design a system for a restaurant management application.
+The application should handle orders for dine-in, takeout, and delivery.
+Each order includes a list of menu items, the quantity of each item, and the total price.
+
+Key Requirements:
+    Order Types: Support for dine-in, takeout, and delivery.
+    Menu: The menu contains categories like appetizers, main courses, and desserts.
+    Billing: Calculate the total price for each order, including taxes.
+    Extendability: The restaurant plans to support promotions or discounts in the future.
+
+order
+{
+
+}
+

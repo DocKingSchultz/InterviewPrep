@@ -1,0 +1,76 @@
+Factory Method Pattern
+
+Purpose: Defines an interface for creating objects, but lets subclasses alter the type of objects that will be created.
+
+Use Case: When you need flexibility in the type of objects your code creates.
+
+Key Features:
+    A factory class defines a method for object creation.
+    Subclasses override the method to create specific types.
+
++-------------------+            +-------------------+
+|   Creator         |<---------->|    Product        |
++-------------------+            +-------------------+
+| + factoryMethod() |            |                   |
++-------------------+            +-------------------+
+             ^
+             |
++-------------------+
+| ConcreteCreator   |
++-------------------+
+| + factoryMethod() |
++-------------------+
+
+Implementation :
+
+// Product Interface
+interface Product {
+    void use();
+}
+
+// Concrete Product A
+class ProductA implements Product {
+    public void use() {
+        System.out.println("Using Product A");
+    }
+}
+
+// Concrete Product B
+class ProductB implements Product {
+    public void use() {
+        System.out.println("Using Product B");
+    }
+}
+
+// Creator Class
+abstract class Creator {
+    abstract Product factoryMethod();
+
+    public void useProduct() {
+        Product product = factoryMethod();
+        product.use();
+    }
+}
+
+// Concrete Creator A
+class CreatorA extends Creator {
+    @Override
+    Product factoryMethod() {
+        return new ProductA();
+    }
+}
+
+// Concrete Creator B
+class CreatorB extends Creator {
+    @Override
+    Product factoryMethod() {
+        return new ProductB();
+    }
+}
+
+
+Concrete example :
+Notification system where notifications can be sent via different mediums,
+such as Email or SMS.
+The client code doesn't need to know how these notifications are created;
+it just asks the factory to produce a notification

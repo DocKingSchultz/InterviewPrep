@@ -1,0 +1,70 @@
+Singleton Pattern
+
+Purpose: Ensures that a class has only one instance and provides a global point of access to it.
+
+Use Case: Configuration classes, logging, database connections.
+
+Key Features:
+    Private constructor.
+    Static instance variable.
+    Public method to get the instance.
+
++-------------------+
+|      Singleton    |
++-------------------+
+| - instance: Singleton |
++-------------------+
+| + getInstance(): Singleton |
++-------------------+
+
+Implementation :
+
+public class Singleton {
+    private static Singleton instance;
+
+    // Private constructor prevents instantiation from other classes
+    private Singleton() {}
+
+    // Public method to provide access to the instance
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+
+// Real life example
+// Database connection
+
+public class DatabaseConnection
+{
+    private DatabaseConnection instance;
+    private Connection conn;
+    private static url = ""
+    private DatabaseConnection()
+    {
+        //instantiate database
+        conn = new Connection(url)
+    }
+    public static DatabaseConnection getInstance()
+    {
+        if(instance == null)
+        {
+            synchronized(DatabaseConnection.class) // make it thread safe
+            {
+                instance = DatabaseConnection();
+            }
+        }
+        return conn;
+    }
+    public Connection getConnection()
+    {
+        return connection;
+    }
+}
+
+Note :
+If you try to call getConnection without first calling getInstance,
+it would not work because getConnection relies on the instance of
+DatabaseConnection already being created.

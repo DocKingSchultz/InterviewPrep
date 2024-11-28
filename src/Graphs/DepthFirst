@@ -1,0 +1,48 @@
+Depth-First Search (DFS) Algorithm :
+
+DFS is a graph traversal algorithm that starts from a source node and explores as far as possible along each branch before backtracking.
+It can be used on grids, graphs, trees, or any other connected structures.
+DFS is particularly useful for problems like finding connected components (e.g., "Number of Islands") and pathfinding.
+
+- Advantages of DFS: -
+1.Memory Efficient:
+In sparse graphs, DFS often uses less memory compared to BFS.
+Only the current path and unvisited nodes need to be stored.
+
+2.Complete Exploration:
+DFS ensures all reachable nodes are visited.
+
+3.Adaptable:
+Works well for problems requiring exploration to the deepest level (e.g., puzzle solving).
+
+- Limitations of DFS -
+1. Not Optimal for Shortest Path:
+DFS does not guarantee the shortest path in unweighted graphs. BFS is better for such problems.
+
+2. Stack Overflow:
+Recursive DFS may result in a stack overflow for deep graphs or trees. Iterative DFS can prevent this.
+
+3.Infinite Loops:
+In graphs with cycles, forgetting to mark nodes as visited can lead to infinite loops.
+
+--------------------------------------------------------------------
+DFS recursively :
+public void dfs(char[][] grid, int row, int col) {
+    // Checks
+    if (row < 0 || col < 0 || row >= grid.length || col >= grid[0].length || grid[row][col] == '0') return;
+
+    // Mark as visited
+    grid[row][col] = '0';
+
+    // Explore all 4 directions (Note that always we explore (r-1, c) first)
+    dfs(grid, row - 1, col); // Up
+    dfs(grid, row + 1, col); // Down
+    dfs(grid, row, col - 1); // Left
+    dfs(grid, row, col + 1); // Right
+}
+--------------------------------------------------------------------
+DFS Iterative :
+public dfs(char[][] grid, int row, col)
+{
+
+}
