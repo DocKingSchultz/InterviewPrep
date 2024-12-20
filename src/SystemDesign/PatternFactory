@@ -74,3 +74,104 @@ Notification system where notifications can be sent via different mediums,
 such as Email or SMS.
 The client code doesn't need to know how these notifications are created;
 it just asks the factory to produce a notification
+
+public enum Status
+{
+    FAILURE,
+    SUCCESS,
+    PENDING
+}
+
+public enum ProtocolType
+{
+    SMS,
+    EMAIL
+}
+
+public abstract class Message
+{
+    private Timestamp timestamp;
+    private String messageContent;
+}
+
+public class SMS extends Message
+{
+    private Channel ch;
+}
+public class Email extends Message
+{
+    User sender;
+    User receiver;
+}
+
+
+public interface CommProtocol
+{
+    public Status send(Message m);
+    public Status receive(Message m);
+}
+public class SMSProtocol implements CommProtocol
+{
+    public Status send(Message m)
+    {
+
+        Channel channel = m1.ch;
+        synchronized(channel)
+        {
+            st = channel.send ...
+        }
+        return st;
+    }
+    public Status receive(Message m1)
+    {
+
+        Channel channel = m1.ch;
+        synchronized(channel)
+        {
+            st = channel.receive(m1)
+        }
+        return st;
+    }
+}
+public class Email implements CommProtocol
+{
+    public Status send(Message m)
+    {
+
+        EmailAdapter adapter = new EmailAdapter(m.sender, m.receiver);
+        synchronized(adapter)
+        {
+            Status st = adapter.send(m1.timestamp, m1.messageContent)
+        }
+        return st;
+    }
+    public Status receive(Message m1)
+    {
+        EmailAdapter adapter = new EmailAdapter(m.sender, m.receiver);
+        synchronized(adapter)
+        {
+            Status st = adapter.receive(m)
+        }
+        return st;
+    }
+}
+
+ProtocolFactory
+{
+    public Protocol createProtocolComm(ProtocolType protType)
+    {
+        switch(protType)
+        {
+            case SMS: {
+             return new SMSProtocol()
+            }
+            case EMAIL:
+            {
+             return new EmailProtocol()
+            }
+            default :
+                thorw new IllegalArgumentException("Invalid protocol type");
+        }
+    }
+}
+
